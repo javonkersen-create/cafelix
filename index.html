@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafelyn - Indomie & Snack Cafe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --light-red: #ff6b6b;
+            --dark-red: #c1121f;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --text-dark: #212529;
+            --shadow: rgba(230, 57, 70, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon img {
+            width: 50px;
+            border-radius: 50%;
+
+        }
+
+        .logo-text h1 {
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: var(--dark-gray);
+        }
+
+        /* Menu Categories */
+        .category-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .category-title h2 {
+            display: inline-block;
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .category-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary-red);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .menu-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 160px;
+            background-color: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            background-color: #f8f9fa;
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-red);
+        }
+
+        .menu-content {
+            padding: 20px;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .menu-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .menu-price {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+
+        .menu-description {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .contact-info i {
+            width: 20px;
+        }
+
+        .hours {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="logo.jpg" alt="">
+                </div>
+                <div class="logo-text">
+                    <h1>Cafelyn</h1>
+                    <p>Indomie & Snack Cafe</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#indomie" class="active">Indomie</a></li>
+                    <li><a href="#snacks">Snacks</a></li>
+                    <li><a href="#drinks">Minuman</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Selamat Datang di Cafelyn</h2>
+            <p>Tempat terbaik untuk menikmati berbagai varian Indomie, snack lezat, dan minuman segar. Rasa yang memuaskan dengan harga terjangkau.</p>
+        </div>
+    </section>
+
+    <!-- Indomie Section -->
+    <section id="indomie" class="container">
+        <div class="category-title">
+            <h2>Menu Indomie</h2>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Indomie Goreng">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Indomie Goreng Spesial</div>
+                        <div class="menu-price">15K</div>
+                    </div>
+                    <p class="menu-description">Indomie goreng dengan tambahan telur, ayam suwir, dan sayuran segar.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Indomie Kuah">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Indomie Kuah Ayam Bawang</div>
+                        <div class="menu-price">12K</div>
+                    </div>
+                    <p class="menu-description">Indomie kuah dengan kaldu ayam bawang, telur, dan topping sayuran.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Indomie Kari Ayam">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Indomie Kari Ayam</div>
+                        <div class="menu-price">14K</div>
+                    </div>
+                    <p class="menu-description">Indomie dengan rasa kari ayam yang gurih, tambahan telur dan ayam suwir.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Indomie Sambal Matah">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Indomie Sambal Matah</div>
+                        <div class="menu-price">16K</div>
+                    </div>
+                    <p class="menu-description">Indomie goreng dengan sambal matah khas Bali, udang, dan telur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snacks Section -->
+    <section id="snacks" class="container">
+        <div class="category-title">
+            <h2>Snacks & Camilan</h2>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kentang Goreng">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Kentang Goreng</div>
+                        <div class="menu-price">12K</div>
+                    </div>
+                    <p class="menu-description">Kentang goreng renyah dengan saus mayo dan saus tomat.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Singkong Keju">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Singkong Keju</div>
+                        <div class="menu-price">10K</div>
+                    </div>
+                    <p class="menu-description">Singkong goreng dengan taburan keju cheddar parut.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Roti Bakar">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Roti Bakar Coklat Keju</div>
+                        <div class="menu-price">15K</div>
+                    </div>
+                    <p class="menu-description">Roti bakar dengan topping coklat dan keju yang lumer.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Siomay">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Siomay Bandung</div>
+                        <div class="menu-price">18K</div>
+                    </div>
+                    <p class="menu-description">Siomay ikan tenggiri dengan bumbu kacang dan kecap.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drinks Section -->
+    <section id="drinks" class="container">
+        <div class="category-title">
+            <h2>Minuman</h2>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kopi Susu">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Kopi Susu Gula Aren</div>
+                        <div class="menu-price">18K</div>
+                    </div>
+                    <p class="menu-description">Kopi dengan susu dan gula aren asli, rasa manis khas.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Matcha Latte">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Matcha Latte</div>
+                        <div class="menu-price">20K</div>
+                    </div>
+                    <p class="menu-description">Matcha asli Jepang dengan susu segar, pahit manis seimbang.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jus Alpukat">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Jus Alpukat Susu</div>
+                        <div class="menu-price">15K</div>
+                    </div>
+                    <p class="menu-description">Alpukat segar dengan susu dan gula, creamy dan sehat.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-image">
+                    <img src="https://images.unsplash.com/photo-1578164253956-5d5c04f1477c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lemon Tea">
+                </div>
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <div class="menu-name">Lemon Tea</div>
+                        <div class="menu-price">12K</div>
+                    </div>
+                    <p class="menu-description">Teh dengan perasan lemon segar, manis asam menyegarkan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cafelyn</h3>
+                    <p>Tempat nongkrong yang nyaman dengan berbagai pilihan Indomie, snack, dan minuman yang lezat.</p>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Jl. Makan Enak No. 123, Kota</p>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <p>(021) 1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Jam Buka</h3>
+                    <div class="hours">
+                        <p>Senin - Jumat: 10:00 - 22:00</p>
+                        <p>Sabtu - Minggu: 09:00 - 23:00</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Menu Populer</h3>
+                    <p>Indomie Goreng Spesial</p>
+                    <p>Kopi Susu Gula Aren</p>
+                    <p>Roti Bakar Coklat Keju</p>
+                    <p>Kentang Goreng</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Cafelyn. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling untuk navigasi
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Hapus class active dari semua link
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    
+                    // Tambah class active ke link yang diklik
+                    this.classList.add('active');
+                    
+                    // Scroll ke section yang dituju
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Highlight nav link berdasarkan posisi scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('nav a');
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
